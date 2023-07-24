@@ -3,6 +3,7 @@ package za.co.entelect.java.forum;
 import za.co.entelect.java.forum.io.DadJokeClient;
 import za.co.entelect.java.forum.io.FileUtils;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.http.HttpResponse;
 import java.util.List;
@@ -13,9 +14,13 @@ public class Main {
 
         List<String> jokes = FileUtils.readAllLines("jokes.txt");
         for (String jokeId : jokes) {
-            HttpResponse<InputStream> response =
-                    dadJokeClient.getResponse(jokeId);
-            FileUtils.saveToFile(response.body(), jokeId + ".png");
+            try {
+                HttpResponse<InputStream> response =
+                        dadJokeClient.getResponse(jokeId);
+                FileUtils.saveToFile(response.body(), jokeId + ".png");
+            } catch (IOException | InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }
