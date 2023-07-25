@@ -24,7 +24,7 @@ public class DadJokeClient {
     }
 
     public HttpRequest createRequest(String jokeId) {
-        return HttpRequest.newBuilder().build();
+        return HttpRequest.newBuilder(creatURI(jokeId)).GET().build();
     }
 
     private URI creatURI(String jokeId) {
