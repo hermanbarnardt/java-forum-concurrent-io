@@ -15,8 +15,12 @@ public class DadJokeClient {
         client = HttpClient.newHttpClient();
     }
 
-    public HttpResponse<InputStream> getResponse(String jokeId) throws IOException, InterruptedException {
-        return client.send(createRequest(jokeId), HttpResponse.BodyHandlers.ofInputStream());
+    public HttpResponse<InputStream> getResponse(String jokeId)  {
+        try {
+            return client.send(createRequest(jokeId), HttpResponse.BodyHandlers.ofInputStream());
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public HttpRequest createRequest(String jokeId) {
