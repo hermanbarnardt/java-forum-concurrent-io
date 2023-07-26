@@ -11,7 +11,10 @@ public class ThreadPoolExecutorBuilder {
     private static final int maxPoolSize = 12;
     private static final int idleTime = 2;
 
+    /**
+     * Create a custom thread pool executor
+     * @return Executor Service managing the thread pool
+     */
     public static ExecutorService buildThreadPoolExecutor() {
-        return new ThreadPoolExecutor(corePoolSize, maxPoolSize, idleTime, TimeUnit.SECONDS, new LinkedBlockingQueue<>());
     }
 }
