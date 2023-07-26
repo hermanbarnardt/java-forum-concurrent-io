@@ -15,6 +15,11 @@ public class DadJokeClient {
         client = HttpClient.newHttpClient();
     }
 
+    /**
+     * Get the response from the HttpClient for a given joke ID
+     * @param jokeId The id of the joke to be retrieved
+     * @return HttpResponse containing an InputStream body
+     */
     public HttpResponse<InputStream> getResponse(String jokeId)  {
         try {
             return client.send(createRequest(jokeId), HttpResponse.BodyHandlers.ofInputStream());
@@ -23,10 +28,20 @@ public class DadJokeClient {
         }
     }
 
+    /***
+     * Create a HttpRequest that will call the endpoint for the provided joke ID
+     * @param jokeId The ID of the joke that will be retrieved
+     * @return The HttpRequest that will call the endpoint
+     */
     public HttpRequest createRequest(String jokeId) {
         return HttpRequest.newBuilder(creatURI(jokeId)).GET().build();
     }
 
+    /***
+     * Creates a URI that points to the endpoint to download a specified joke as an image
+     * @param jokeId The ID of the joke to be downloaded
+     * @return The URI of the endpoint that points to the image of the joke
+     */
     private URI creatURI(String jokeId) {
         return URI.create("https://icanhazdadjoke.com/j/" + jokeId + ".png");
     }
