@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Collections;
 import java.util.List;
 
 public class FileUtils {
@@ -14,12 +15,7 @@ public class FileUtils {
      * @return The contents of the file as a list of String
      */
     public static List<String> readAllLines(String path) {
-        Path file = Path.of(path);
-        try {
-            return Files.readAllLines(file);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        return Collections.emptyList();
     }
 
     /**
@@ -28,11 +24,5 @@ public class FileUtils {
      * @param fileName The name of the file that should be created
      */
     public static void saveToFile(InputStream input, String fileName) {
-        Path file = Path.of(fileName);
-        try {
-            Files.copy(input, file);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 }
