@@ -21,11 +21,7 @@ public class DadJokeClient {
      * @return HttpResponse containing an InputStream body
      */
     public HttpResponse<InputStream> getResponse(String jokeId)  {
-        try {
-            return client.send(createRequest(jokeId), HttpResponse.BodyHandlers.ofInputStream());
-        } catch (IOException | InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        return null;
     }
 
     /***
@@ -34,7 +30,7 @@ public class DadJokeClient {
      * @return The HttpRequest that will call the endpoint
      */
     public HttpRequest createRequest(String jokeId) {
-        return HttpRequest.newBuilder(creatURI(jokeId)).GET().build();
+        return null;
     }
 
     /***
